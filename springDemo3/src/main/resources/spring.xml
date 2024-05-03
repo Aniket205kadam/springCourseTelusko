@@ -1,0 +1,53 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    <bean id="alien1" class="org.example.Alien" scope="prototype"> </bean>-->
+
+<!--    <bean id="alien1" class="org.example.Alien" autowire="byType">-->
+
+<!--        <property name="age" value="21" />-->
+    <!--        <property name="com" ref="desktop" />-->
+<!--        <property name="age" value="21"> </property>-->
+<!--        <property name="laptop" ref="lap"> </property>-->
+<!--        <constructor-arg  type="org.example.Laptop" ref="lap" />-->
+<!--        <constructor-arg type="int" value="21" />-->
+
+<!--        <constructor-arg  index="1" ref="lap" />-->
+<!--        <constructor-arg index="0" value="21" />-->
+
+<!--        <constructor-arg  name="laptop" ref="lap" />-->
+<!--        <constructor-arg name="age" value="21" />-->
+<!--    </bean>-->
+
+<!--    <bean id="alien2" class="org.example.Alien">-->
+<!--        <property name="com" ref="lap" />-->
+<!--        <property name="age" value="19" />-->
+<!--    </bean>-->
+
+<!--    <bean id="com" class="org.example.Laptop" />-->
+<!--    <bean id="Desktop" class="org.example.Desktop" primary="true" />-->
+<!--    <bean id="laptop" class="org.example.Laptop" />-->
+
+<!--    <bean id="alien2" class="org.example.Alien"> </bean>-->
+
+
+
+<!--    <bean id="alien" class="org.example.Alien">-->
+<!--        <property name="com" ref="laptop" />-->
+<!--        <property name="age" value="21" />-->
+<!--    </bean>-->
+
+
+<!--    <bean class="org.example.Desktop" primary="true"/>-->
+<!--    <bean id="laptop" class="org.example.Laptop" lazy-init="true" />-->
+
+<!--Inner Bean-->
+    <bean id="alien" class="org.example.Alien">
+        <property name="age" value="21" />
+        <property name="com" >
+            <bean id="laptop" class="org.example.Laptop" />
+        </property>
+    </bean>
+
+</beans>
