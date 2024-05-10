@@ -1,0 +1,61 @@
+package com.aniket.springbootrest;
+
+import com.aniket.springbootrest.model.JobPost;
+import com.aniket.springbootrest.service.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+public class JobRestController {
+
+    private JobService service;
+
+    @Autowired
+    public void setService(JobService service) {
+        this.service = service;
+    }
+
+//    @GetMapping("jobPosts")
+////    @ResponseBody
+//    public List<JobPost> getAllJobs() {
+//        return service.returnAllJobPost();
+//    }
+
+    @GetMapping(path = "jobPosts", produces = {"application/json"})
+    public List<JobPost> getAllJobs() {
+        return service.returnAllJobPost();
+    }
+
+    //search the specific job post
+    @GetMapping("jobPost/{jobPostId}") ///{name}
+    public JobPost getJobPost(@PathVariable("jobPostId") int jobPostId) { //, @PathVariable String name
+//        System.out.println("Name: "+ name);
+        return service.getJobPost(jobPostId);
+    }
+
+    //add the job post
+    @PostMapping(path = "jobPost" , consumes = {"application/xml"})
+    public JobPost addJobPost(@RequestBody JobPost jobPost) {
+        service.addJobPost(jobPost);
+
+        return service.getJobPost(jobPost.getPostId());
+    }
+
+    //update the job post
+    @PutMapping("jobPost")
+    public JobPost updateJobPost(@RequestBody JobPost jobPost) {
+        service.updateJobPost(jobPost);
+
+        return service.getJobPost(jobPost.getPostId());
+    }
+
+    //delete the job post
+    @DeleteMapping("jobPost/{jobPostId}")
+    public String deleteJobPost(@PathVariable("jobPostId") int jobPostId) {
+        service.deleteJobPost(jobPostId);
+        return "Job post remove successfully";
+    }
+}
