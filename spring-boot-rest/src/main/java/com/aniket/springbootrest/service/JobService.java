@@ -28,11 +28,19 @@ public class JobService {
     }
 
     public JobPost getJobPost(int jobPostId) {
+        //start time
+        //int num = 10/0;
         return repo.findById(jobPostId).orElse(new JobPost());
+        //end time
+        //return (end time - start timeS)
     }
 
     public void updateJobPost(JobPost jobPost) {
-        repo.save(jobPost);
+        //log code
+        //security
+        //validation
+        //exception
+        repo.save(jobPost);//it is business logic
     }
 
     public void deleteJobPost(int jobPostId) {

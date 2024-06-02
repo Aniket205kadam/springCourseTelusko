@@ -3,6 +3,9 @@ package com.aniket.springbootrest.Controller;
 import com.aniket.springbootrest.model.JobPost;
 import com.aniket.springbootrest.service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,10 +27,10 @@ public class JobRestController {
 //        return service.returnAllJobPost();
 //    }
 
-    @GetMapping(path = "jobPosts", produces = {"application/json"})
-    public List<JobPost> getAllJobs() {
-        return service.returnAllJobPost();
-    }
+//    @GetMapping(path = "jobPosts", produces = {"application/json"})
+//    public List<JobPost> getAllJobs() {
+//        return service.returnAllJobPost();
+//    }
 
     //search the specific job post
     @GetMapping("jobPost/{jobPostId}") ///{name}
@@ -66,5 +69,11 @@ public class JobRestController {
     @GetMapping("jobPosts/keyword/{keyword}")
     public List<JobPost> searchByKeyword(@PathVariable String keyword) {
         return service.search(keyword);
+    }
+
+    @GetMapping("jobPosts")
+    public ResponseEntity<List<JobPost>> getAllJobs() {
+//        return new ResponseEntity<>(service.returnAllJobPost(), HttpStatus.ACCEPTED);
+        return ResponseEntity.ok(service.returnAllJobPost());
     }
 }
